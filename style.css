@@ -704,16 +704,20 @@ body {
 @media screen and (max-width: 768px) {
     .window {
         width: 94%;
-        /* Initial default, but overridable by JS */
         left: 3%;
-        top: 70px;
+        top: 60px;
         height: auto;
-        /* max-height: calc(100vh - 160px); Removed to allow resizing */
+        min-width: 0;
+        max-height: calc(100vh - 180px);
+        /* Limit height */
         overflow-y: auto;
         clip-path: none;
-        border-radius: 10px;
+        border-radius: 12px;
         touch-action: none;
-        /* Prevent scrolling while dragging/resizing */
+        background: #000 !important;
+        /* Solid background */
+        border: 1px solid var(--cyan);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
     }
 
     .wide-window {
@@ -722,57 +726,66 @@ body {
 
     .win-resize-handle {
         display: block !important;
-        /* Show handle */
-        width: 30px;
-        /* Larger hit area for touch */
-        height: 30px;
+        width: 40px;
+        /* Larger hit area */
+        height: 40px;
         background: linear-gradient(135deg, transparent 40%, var(--cyan) 40%);
         touch-action: none;
+        z-index: 200;
     }
 
     .sys-status {
-        top: auto;
-        bottom: 90px;
-        left: 20px;
-        right: 20px;
-        font-size: 8px;
-        flex-direction: row;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 5px;
-        border-radius: 5px;
-        z-index: 1500;
+        top: 35px;
+        /* Move to top */
+        bottom: auto;
+        left: 10px;
+        right: auto;
+        font-size: 7px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        z-index: 10;
         pointer-events: none;
-        /* Allow clicks to pass through to dock/windows if needed */
+        opacity: 0.7;
     }
 
     .sys-status span {
         margin-right: 0;
+        margin-bottom: 2px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 2px 5px;
+        border-radius: 4px;
     }
 
     .user-id-badge {
-        top: 15px;
-        left: 15px;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 5px 10px;
-        border-radius: 0 5px 5px 0;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 5px 8px;
+        border-radius: 5px;
     }
 
     .glitch-text {
         font-size: 10px;
+        letter-spacing: 1px;
     }
 
     .status-indicator {
-        font-size: 7px;
+        font-size: 6px;
     }
 
     .dock {
-        bottom: 20px;
-        gap: 12px;
-        padding: 10px 15px;
-        width: 90%;
-        max-width: 400px;
+        bottom: 15px;
+        gap: 15px;
+        padding: 10px 20px;
+        width: auto;
+        min-width: 200px;
+        max-width: 90%;
         justify-content: center;
+        border-radius: 30px;
     }
 
     .dock-icon {
@@ -782,28 +795,50 @@ body {
 
     .viz-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .viz-list {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .viz-item {
+        border-width: 1px;
     }
 
     .win-body {
-        padding: 15px;
+        padding: 10px;
     }
 
     .win-header {
         cursor: move;
-        /* Indicate draggable */
         touch-action: none;
+        padding: 8px 10px;
+    }
+
+    .win-title {
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
     }
 
     .console-text {
-        font-size: 12px;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .console-text h1,
+    .console-text h2,
+    .console-text h3 {
+        font-size: 13px;
+        margin: 20px 0 10px 0;
     }
 
     .profile-wrap {
         height: auto;
-        max-height: 200px;
+        max-height: 250px;
     }
 }
