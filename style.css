@@ -15,6 +15,7 @@
 * {
     box-sizing: border-box;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -23,6 +24,8 @@ body {
     background: var(--bg);
     color: #fff;
     font-family: var(--font-mono);
+    width: 100vw;
+    height: 100vh;
 }
 
 /* --- BACKGROUND --- */
@@ -135,7 +138,6 @@ body {
     transition: width 0.1s, height 0.1s, opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 255, 0.05);
     overflow: visible;
-    /* Needed for resize handle handle positioning */
     min-width: 250px;
     min-height: 150px;
 }
@@ -227,6 +229,7 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: all;
+    z-index: 500;
 }
 
 .window.faded {
@@ -556,6 +559,13 @@ body {
     transform: translateX(-50%);
     display: flex;
     gap: 15px;
+    z-index: 2000;
+    background: rgba(0, 5, 10, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .dock-icon {
@@ -632,7 +642,6 @@ body {
     gap: 10px;
     z-index: 50;
     display: none;
-    /* Hidden by default */
 }
 
 .search-ui-container.active {
@@ -689,4 +698,112 @@ body {
     background: var(--cyan) !important;
     color: var(--bg) !important;
     box-shadow: 0 0 10px var(--cyan);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media screen and (max-width: 768px) {
+    .window {
+        width: 94%;
+        /* Initial default, but overridable by JS */
+        left: 3%;
+        top: 70px;
+        height: auto;
+        /* max-height: calc(100vh - 160px); Removed to allow resizing */
+        overflow-y: auto;
+        clip-path: none;
+        border-radius: 10px;
+        touch-action: none;
+        /* Prevent scrolling while dragging/resizing */
+    }
+
+    .wide-window {
+        width: 94%;
+    }
+
+    .win-resize-handle {
+        display: block !important;
+        /* Show handle */
+        width: 30px;
+        /* Larger hit area for touch */
+        height: 30px;
+        background: linear-gradient(135deg, transparent 40%, var(--cyan) 40%);
+        touch-action: none;
+    }
+
+    .sys-status {
+        top: auto;
+        bottom: 90px;
+        left: 20px;
+        right: 20px;
+        font-size: 8px;
+        flex-direction: row;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px;
+        border-radius: 5px;
+        z-index: 1500;
+        pointer-events: none;
+        /* Allow clicks to pass through to dock/windows if needed */
+    }
+
+    .sys-status span {
+        margin-right: 0;
+    }
+
+    .user-id-badge {
+        top: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px 10px;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .glitch-text {
+        font-size: 10px;
+    }
+
+    .status-indicator {
+        font-size: 7px;
+    }
+
+    .dock {
+        bottom: 20px;
+        gap: 12px;
+        padding: 10px 15px;
+        width: 90%;
+        max-width: 400px;
+        justify-content: center;
+    }
+
+    .dock-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .viz-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .viz-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .win-body {
+        padding: 15px;
+    }
+
+    .win-header {
+        cursor: move;
+        /* Indicate draggable */
+        touch-action: none;
+    }
+
+    .console-text {
+        font-size: 12px;
+    }
+
+    .profile-wrap {
+        height: auto;
+        max-height: 200px;
+    }
 }
