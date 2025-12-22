@@ -117,11 +117,14 @@ function toggleWindow(id) {
         win.style.zIndex = ++zIndex;
 
         // Prevent Overlap (Smart Positioning if spawned nearby)
-        smartPosition(win);
+        if (window.innerWidth > 768) {
+            smartPosition(win);
+        }
     }
 }
 
 function smartPosition(win) {
+    if (window.innerWidth <= 768) return; // Ignore on mobile
     const others = Array.from(document.querySelectorAll('.window.active')).filter(w => w !== win);
     let rect = win.getBoundingClientRect();
 
@@ -136,34 +139,57 @@ function smartPosition(win) {
     });
 }
 
+// 4. WINDOW MANAGER (MOUSE & TOUCH)
 document.querySelectorAll('.window').forEach(win => {
     const header = win.querySelector('.win-header');
-    win.addEventListener('mousedown', () => {
+
+    // Focus window on touch/click
+    const focusWindow = () => {
         document.querySelectorAll('.window').forEach(w => w.classList.add('faded'));
         win.classList.remove('faded');
         win.style.zIndex = ++zIndex;
-    });
+    };
+    win.addEventListener('mousedown', focusWindow);
+    win.addEventListener('touchstart', focusWindow, { passive: true });
 
-    header.onmousedown = function (e) {
-        if (e.target.closest('.win-controls')) return; // Don't drag from buttons
-        e.preventDefault();
-        let shiftX = e.clientX - win.getBoundingClientRect().left;
-        let shiftY = e.clientY - win.getBoundingClientRect().top;
+    // Drag Logic
+    const startDrag = (e) => {
+        if (e.target.closest('.win-controls')) return;
+        if (e.type === 'mousedown') e.preventDefault();
 
-        function onMouseMove(event) {
-            win.style.left = event.pageX - shiftX + 'px';
-            win.style.top = event.pageY - shiftY + 'px';
+        let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        let clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+
+        let shiftX = clientX - win.getBoundingClientRect().left;
+        let shiftY = clientY - win.getBoundingClientRect().top;
+
+        function onMove(event) {
+            let moveX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+            let moveY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
+
+            win.style.left = moveX - shiftX + 'px';
+            win.style.top = moveY - shiftY + 'px';
+            if (event.cancelable) event.preventDefault();
         }
 
-        document.addEventListener('mousemove', onMouseMove);
+        function onEnd() {
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onEnd);
+            document.removeEventListener('touchmove', onMove);
+            document.removeEventListener('touchend', onEnd);
+        }
 
-        function onMouseUp() {
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
-        };
-
-        document.addEventListener('mouseup', onMouseUp);
+        if (e.type === 'mousedown') {
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onEnd);
+        } else {
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('touchend', onEnd);
+        }
     };
+
+    header.addEventListener('mousedown', startDrag);
+    header.addEventListener('touchstart', startDrag, { passive: false });
 });
 
 // 4. BACKGROUND PARTICLES
@@ -226,26 +252,42 @@ window.addEventListener('resize', () => {
 });
 
 // 5. RESIZE & SEARCH SYSTEM
+// 5. RESIZE & SEARCH SYSTEM (MOUSE & TOUCH)
 function initResize(e, id) {
-    e.preventDefault();
+    // Only prevent default if it's not a passive touch start (though usually we want to prevent scroll here)
+    if (e.type === 'mousedown') e.preventDefault();
+    if (e.type === 'touchstart') e.stopPropagation();
+
     const win = document.getElementById(id);
     const startWidth = win.offsetWidth;
     const startHeight = win.offsetHeight;
-    const startX = e.clientX;
-    const startY = e.clientY;
 
-    function onMouseMove(event) {
-        win.style.width = startWidth + event.clientX - startX + 'px';
-        win.style.height = startHeight + event.clientY - startY + 'px';
+    let startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    let startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+
+    function onMove(event) {
+        let moveX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+        let moveY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
+
+        win.style.width = startWidth + moveX - startX + 'px';
+        win.style.height = startHeight + moveY - startY + 'px';
+        if (event.cancelable) event.preventDefault();
     }
 
-    function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
+    function onEnd() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onEnd);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onEnd);
     }
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    if (e.type.includes('mouse')) {
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+    } else {
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onEnd);
+    }
 }
 
 function toggleSearch(winId) {
