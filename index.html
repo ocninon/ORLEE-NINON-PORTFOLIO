@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORLEE NINON | NEURAL PORTFOLIO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="boot-screen">
+        <div class="boot-terminal">
+            <p>> OCN_SYSTEM_BOOT...</p>
+            <p>> HIDING_TEXT_LAYERS...</p>
+            <p>> RENDER_MODE: VISUAL_ONLY...</p>
+            <div class="loader-bar">
+                <div class="bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div class="user-id-badge">
+        <div class="glitch-text" data-text="ORLEE_NINON">ORLEE_NINON</div>
+        <div class="status-indicator">SYSTEM_ADMIN</div>
+    </div>
+
+    <div class="sys-status">
+        <span onclick="toggleWindow('win-manual')"
+            style="cursor:pointer; color:var(--cyan); border:1px solid var(--border-dim); padding:2px 8px; margin-right: 10px;">SYSTEM_MANUAL</span>
+        <span>VISUAL_MODE: <b style="color:var(--cyan)">ACTIVE</b></span>
+        <span>DATA_STREAM: <b>ENCRYPTED</b></span>
+        <span
+            style="margin-left:15px; border-left:1px solid var(--border-dim); padding-left:15px; color:var(--cyan); font-weight:bold;"
+            id="sys-time">00:00:00</span>
+    </div>
+
+    <div class="window" id="win-landing" style="top: 15%; left: 25%; width: 500px;">
+        <div class="win-header">
+            <span class="win-title">ORLEE_NINON // NEURAL_ACCESS_PORTAL</span>
+            <div class="win-controls">
+                <span class="dot close" onclick="toggleWindow('win-landing')"></span>
+            </div>
+        </div>
+        <div class="win-body landing-hero">
+            <div class="profile-wrap">
+                <img src="profile_portrait.png" alt="Identity Portrait" class="profile-img negative">
+                <img src="profile_portrait.png" alt="Identity Portrait" class="profile-img positive">
+                <svg class="profile-svg-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <line x1="0" y1="0" x2="100" y2="0" class="scan-line" />
+                    <circle cx="20" cy="30" r="0.5" fill="var(--cyan)" opacity="0.4" />
+                    <circle cx="80" cy="45" r="0.5" fill="var(--cyan)" opacity="0.4" />
+                    <circle cx="40" cy="70" r="0.5" fill="var(--cyan)" opacity="0.4" />
+                    <!-- NANO_BANANA GLYPH -->
+                    <path d="M85,15 Q90,15 90,20 Q90,25 85,30" stroke="var(--cyan)" fill="none" stroke-width="0.3"
+                        opacity="0.3">
+                        <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </div>
+            <div class="console-text"
+                style="text-align:center; font-size:12px; margin-top:-10px; color:var(--cyan); letter-spacing:3px;">
+                SYSTEM_ADMIN // ONLINE
+            </div>
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-landing')"></div>
+    </div>
+
+    <div class="window wide-window" id="win-main" style="top: 10%; left: 15%;">
+        <div class="win-header">
+            <span class="win-title">IDENTITY_CORE // NINON.EXE</span>
+            <div class="win-controls">
+                <div class="search-toggle-btn" onclick="toggleSearch('win-main')">🔍</div>
+                <span class="dot close" onclick="toggleWindow('win-main')"></span>
+            </div>
+        </div>
+        <div class="search-ui-container" id="search-win-main">
+            <input type="text" class="search-input" placeholder="SEMANTIC_SEARCH..."
+                oninput="handleSearchInput('win-main', 'main-console', this.value)">
+            <span class="search-count" id="search-count-win-main"></span>
+            <div class="search-nav">
+                <div class="search-arrow" onclick="navigateSearch('win-main', 'main-console', -1)">▲</div>
+                <div class="search-arrow" onclick="navigateSearch('win-main', 'main-console', 1)">▼</div>
+            </div>
+        </div>
+        <div class="win-body">
+            <div class="viz-grid">
+                <div class="viz-card" onclick="revealData('main-console', 'bio_data', this)">
+                    <div class="card-icon">👤</div>
+                    <div class="card-label">IDENTITY</div>
+                </div>
+                <div class="viz-card" onclick="revealData('main-console', 'legacy_data', this)">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-label">LEGACY</div>
+                </div>
+                <div class="viz-card" onclick="revealData('main-console', 'ai_data', this)">
+                    <div class="card-icon">🔒</div>
+                    <div class="card-label">SECURE_AI</div>
+                </div>
+            </div>
+
+            <div class="console-box" id="main-console-box">
+                <div class="console-header">> DATA_READOUT_TERMINAL</div>
+                <div class="console-text" id="main-console">
+                    [AWAITING_SELECTION] Select an IDENTITY_ZONE above to decrypt details...
+                </div>
+            </div>
+
+            <div id="bio_data" style="display:none;">
+                # DOCUMENT: OFFICIAL_BIOGRAPHICAL_DOSSIER
+                **DOCUMENT_STAMP:** OCN-PRO-2025-V1
+                **CLASSIFICATION:** LEVEL_1_PUBLIC
+
+                ---
+
+                ## PREAMBLE
+                This document outlines the professional trajectory and core identity of **Orlee Ninon**. It serves as a
+                comprehensive record of a career transitioned from large-scale national infrastructure management to
+                specialized AI systems architecture.
+
+                ---
+
+                ## EXECUTIVE SUMMARY
+                A retired IT Systems Planning & Design Manager with a legacy spanning over three decades in the
+                Philippine energy sector. Currently an active developer and architect specializing in private, secure,
+                and offline-capable Artificial Intelligence systems.
+
+                ---
+
+                ## CORE COMPETENCIES & DOMAINS
+                ### INFRASTRUCTURE & PLANNING
+                * Institutional IT Systems Planning & High-Level Design.
+                * Electricity Market Operations & Regulatory Compliance.
+                * Mission-Critical System Stability & Performance.
+
+                ### AI ARCHITECTURE (CURRENT PRACTICE)
+                * Secure Local LLM Integration (Private/Air-Gapped).
+                * Unified Classification Standard (UCS) Implementation.
+                * OS-Agnostic Web Application Prototyping.
+
+                ---
+
+                ## PROFESSIONAL VALUES
+                > "Technology must first serve the human need for security and sovereignty. Complexity is a tool, but
+                reliability is the mandate."
+
+                ---
+
+                <footer>
+                    **END OF DOCUMENT** | AUTHENTICITY_VERIFIED: 2025.12.22 | DIGITAL_SIGNATURE: [OCN_SECURE_BOOT]
+                </footer>
+            </div>
+
+            <div id="legacy_data" style="display:none;">
+                # DOCUMENT: CRITICAL_INFRASTRUCTURE_LEGACY_REPORT
+                **DOCUMENT_STAMP:** OCN-LEG-31Y-FINAL
+                **PERIOD_OF_SERVICE:** 1990 - 2021
+
+                ---
+
+                ## INFRASTRUCTURE ARCHITECTURE
+                A formal record of service within the Philippine National Power Grid and Market operations. This era was
+                defined by the transition from government monolithic entities to deregulated market environments.
+
+                ### KEY INSTITUTIONAL ROLES
+                * **TRANSCO (National Transmission Corp):** Managed core planning for grid-scale IT systems.
+                * **PEMC (Philippine Electricity Market Corp):** Architected foundational market-clearing and data
+                systems.
+                * **IEMOP (Independent Electricity Market Operator):** Led strategic IT systems planning for spot market
+                operations.
+
+                ### OPERATIONAL IMPACT
+                * **2003 Market Launch:** Served as one of the original technical architects during the birth of the
+                Philippine Electricity Market.
+                * **Service Tenure:** Dedicated over 31 years to ensuring the continuous operation of mission-critical
+                energy platforms.
+
+                ---
+
+                ## VISUAL IDENTITY & BRANDING
+                The legacy of this career also includes the visual anchoring of the sector's most prominent
+                organizations.
+
+                ### IDENTITY DESIGN PORTFOLIO
+                * **WESM Official Logo:** Designed the primary mark for the Wholesale Electricity Spot Market.
+                * **PEMC Official Logo:** Designed the institutional identity for the market corporation.
+
+                ---
+
+                <footer>
+                    **DOCUMENT END** | PERIOD: 3+ DECADES | LOG: RECOGNIZED_LEGACY_SYSTEMS
+                </footer>
+            </div>
+
+            <div id="ai_data" style="display:none;">
+                # DOCUMENT: SECURE_AI_INNOVATION_STRATEGY
+                **DOCUMENT_STAMP:** OCN-AI-UCS-V2
+                **STATUS:** ACTIVE_PROTOCOLS
+
+                ---
+
+                ## DEVELOPMENT PHILOSOPHY
+                This blueprint outlines the shift toward **Secure, Private, and Local-First** AI systems. In an era of
+                data vulnerability, the mandate is to bring AI to the data, not the data to the AI.
+
+                ### KEY PILLARS
+                * **DATA SOVEREIGNTY:** 100% offline-capable architectures (Air-Gapped).
+                * **COMPLIANT ROBUSTNESS:** Building professional-grade software that is production-ready and legally
+                defensible.
+                * **OS-AGNOSTIC DESIGN:** Leveraging open-source stacks to ensure long-term accessibility.
+
+                ---
+
+                ## UNIFIED CLASSIFICATION STANDARD (UCS)
+                The master framework for classifying human-AI interaction systems into 8 core categories based on
+                primary user outcome.
+
+                ### THE 8-CATEGORY HIERARCHY
+                * **KDR:** Knowledge, Documents & Research.
+                * **GRCL:** Governance, Risk, Compliance & Legal.
+                * **DAOM:** Data Acquisition & Offline Mirrors.
+                * **AMOI:** Analytics, Market & Operational Intelligence.
+                * **EPAT:** Engineering Productivity, Automation & Toolchains.
+                * **LTA:** Learning, Training & Assessment.
+                * **CMEL:** Creative, Media & Experience Layers.
+                * **CLF:** Culture, Leisure & Faith.
+
+                ---
+
+                <footer>
+                    **STRATEGIC BLUEPRINT** | CATEGORY: AI_ETHICS_&_SECURITY | SYSTEM: OCN_ARCHIVE
+                </footer>
+            </div>
+
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-main')"></div>
+    </div>
+
+    <div class="window" id="win-proj" style="top: 20%; left: 45%;">
+        <div class="win-header">
+            <span class="win-title">ARSENAL_DB</span>
+            <div class="win-controls">
+                <div class="search-toggle-btn" onclick="toggleSearch('win-proj')">🔍</div>
+                <span class="dot close" onclick="toggleWindow('win-proj')"></span>
+            </div>
+        </div>
+        <div class="search-ui-container" id="search-win-proj">
+            <input type="text" class="search-input" placeholder="SEMANTIC_SEARCH..."
+                oninput="handleSearchInput('win-proj', 'proj-console', this.value)">
+            <span class="search-count" id="search-count-win-proj"></span>
+            <div class="search-nav">
+                <div class="search-arrow" onclick="navigateSearch('win-proj', 'proj-console', -1)">▲</div>
+                <div class="search-arrow" onclick="navigateSearch('win-proj', 'proj-console', 1)">▼</div>
+            </div>
+        </div>
+        <div class="win-body">
+
+            <div class="viz-list">
+                <div class="viz-item" onclick="revealData('proj-console', 'p1_data', this)">
+                    <div class="item-icon">💻</div>
+                    <div class="item-label">CORE_AI</div>
+                    <div class="item-status-bar">
+                        <div class="item-status-fill"></div>
+                    </div>
+                </div>
+                <div class="viz-item" onclick="revealData('proj-console', 'p2_data', this)">
+                    <div class="item-icon">🤖</div>
+                    <div class="item-label">AGENTS</div>
+                    <div class="item-status-bar">
+                        <div class="item-status-fill"></div>
+                    </div>
+                </div>
+                <div class="viz-item" onclick="revealData('proj-console', 'p3_data', this)">
+                    <div class="item-icon">⚡</div>
+                    <div class="item-label">BRAND</div>
+                    <div class="item-status-bar">
+                        <div class="item-status-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="console-box small-console">
+                <div class="console-text" id="proj-console">
+                    [SELECT_PROJECT_ICON]
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button class="win-btn" onclick="toggleWindow('win-registry')"
+                    style="padding: 10px 20px; font-size: 10px; background: rgba(0,242,255,0.1); border: 1px solid var(--cyan); color: white; cursor: pointer; font-family: var(--font-mono);">
+                    ACCESS_FULL_PROJECT_REGISTRY_CSV (55+ ITEMS)
+                </button>
+            </div>
+
+            <div id="p1_data" style="display:none;">
+                # PROJECT: WEBAPP-MANAGE
+                **CAT:** Knowledge / Systems Architecture
+                **STAMP:** OCN-PROJ-001-A
+                **UCS:** KDR
+
+                ---
+
+                ## PROJECT OVERVIEW
+                A high-fidelity intelligence platform designed to manage and extract knowledge from dense technical
+                documentation sets.
+
+                ## PRIMARY MODULES
+                ### SEMANTIC ARCHIVAL
+                * Vector-based retrieval for multi-format text discovery.
+                * Metadata-enriched indexing for rapid search navigation.
+
+                ### INTELLIGENCE LAYER
+                * Evidence-linked Q&A with direct source citations.
+                * Automated technical summarization for rapid executive review.
+
+                ---
+
+                <footer>
+                    **PROJECT_STATUS:** ACTIVE_SECURE_BUILD | **PHASE:** [V1_STABLE]
+                </footer>
+            </div>
+
+            <div id="p2_data" style="display:none;">
+                # PROJECT: AION_APP (DOCRETRIEVE)
+                **CAT:** Engineering / Research Assistant
+                **STAMP:** OCN-PROJ-002-C
+                **UCS:** KDR / EPAT
+
+                ---
+
+                ## MISSION PROFILE
+                Deploying a secure, air-gapped "research assistant" powered by Local LLMs for sensitive documentation
+                handling.
+
+                ## TECHNICAL SPECIFICATIONS
+                ### PRIVACY ARCHITECTURE
+                * **AIR-GAP:** 100% data sovereignty; zero cloud dependency.
+                * **LOCAL_INF:** Optimized for local inferencing with source-backed reliability.
+
+                ### INTERFACE CAPABILITIES
+                * RAG-based workspace designed for multi-document cross-referencing.
+                * High-accuracy citation mapping for internal technical verification.
+
+                ---
+
+                <footer>
+                    **PROJECT_STATUS:** DEPLOYMENT_READY | **PHASE:** [RELEASE_C]
+                </footer>
+            </div>
+
+            <div id="p3_data" style="display:none;">
+                # PROJECT: PHOTOCHOICE_AI
+                **CAT:** Creative / Media Intelligence
+                **STAMP:** OCN-PROJ-003-Specs
+                **UCS:** CMEL
+
+                ---
+
+                ## SYSTEM OBJECTIVE
+                Automating the selection and quality assessment of competitive photography through intelligent style
+                analysis.
+
+                ## FUNCTIONAL SCOPE
+                ### ANALYSIS ENGINE
+                * Automated aesthetic scoring based on technical benchmarks.
+                * Categorization of style and composition motifs.
+
+                ### PREDICTIVE SCORING
+                * Predictive "readiness" analytics for international photography contests.
+                * Comparative benchmarking against historic winning portfolios.
+
+                ---
+
+                <footer>
+                    **PROJECT_STATUS:** SPEC_PHASE | **PHASE:** [DRAFTING]
+                </footer>
+            </div>
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-proj')"></div>
+    </div>
+
+    <div class="window" id="win-comm" style="top: 35%; left: 30%;">
+        <div class="win-header">
+            <span class="win-title">INTELLIGENCE_INQUIRY // INBOUND_CHANNEL</span>
+            <div class="win-controls">
+                <div class="search-toggle-btn" onclick="toggleSearch('win-comm')">🔍</div>
+                <span class="dot close" onclick="toggleWindow('win-comm')"></span>
+            </div>
+        </div>
+        <div class="search-ui-container" id="search-win-comm">
+            <input type="text" class="search-input" placeholder="SEMANTIC_SEARCH..."
+                oninput="handleSearchInput('win-comm', 'comm-console', this.value)">
+            <span class="search-count" id="search-count-win-comm"></span>
+            <div class="search-nav">
+                <div class="search-arrow" onclick="navigateSearch('win-comm', 'comm-console', -1)">▲</div>
+                <div class="search-arrow" onclick="navigateSearch('win-comm', 'comm-console', 1)">▼</div>
+            </div>
+        </div>
+        <div class="win-body">
+            <div style="text-align:center; margin-bottom:15px;">
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" stroke="var(--cyan)" stroke-width="2" fill="none" />
+                    <circle cx="25" cy="25" r="10" fill="var(--cyan)">
+                        <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div style="font-size:10px; color:var(--cyan); letter-spacing:2px; margin-top:5px;">CHANNEL_OPEN</div>
+            </div>
+
+            <div class="console-header" style="text-align:center; position:static; margin-bottom:10px;">[
+                INITIATE_DIRECT_UPLINK ]</div>
+
+            <form class="tech-form" style="display:flex; flex-direction:column; gap:12px;">
+                <input type="text" placeholder="SUBJECT_IDENTIFIER"
+                    style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-dim); color:var(--cyan); padding:8px; font-family:var(--font-mono); font-size:11px;">
+
+                <div style="font-size:9px; color:#666; margin-bottom:-8px;">SELECT_INQUIRY_TYPE:</div>
+                <div class="radio-group" style="display:flex; gap:15px; font-size:10px; color:#aaa;">
+                    <label style="cursor:pointer;"><input type="radio" name="type" checked> GENAI_WORKSHOP</label>
+                    <label style="cursor:pointer;"><input type="radio" name="type"> STRATEGY_CONSULT</label>
+                    <label style="cursor:pointer;"><input type="radio" name="type"> CUSTOM_BUILD</label>
+                </div>
+
+                <textarea placeholder="INQUIRY_PAYLOAD"
+                    style="width:100%; height:80px; background:rgba(0,0,0,0.5); border:1px solid var(--border-dim); color:#fff; padding:8px; font-family:var(--font-mono); font-size:11px; resize:none;"></textarea>
+
+                <button type="button" class="btn-activate" onclick="transmitUplink()"
+                    style="width:100%; height:35px; background:rgba(0,242,255,0.1); border:1px solid var(--cyan); color:white; cursor:pointer; font-family:var(--font-mono); letter-spacing:1px; transition:0.3s; font-weight:bold;">TRANSMIT_PACKET</button>
+            </form>
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-comm')"></div>
+    </div>
+
+    <div class="dock">
+        <div class="dock-icon" onclick="toggleWindow('win-landing')" data-tooltip="HOME">
+            <svg viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-main')" data-tooltip="IDENTITY">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+            </svg>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-proj')" data-tooltip="ARSENAL">
+            <svg viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-comm')" data-tooltip="UPLINK">
+            <svg viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- FULL PROJECT REGISTRY WINDOW -->
+    <div class="window wide-window" id="win-registry" style="top: 15%; left: 30%;">
+        <div class="win-header">
+            <span class="win-title">DATABASE_DUMP // USC_CLASSIFIED_SYSTEMS</span>
+            <div class="win-controls">
+                <div class="search-toggle-btn" onclick="toggleSearch('win-registry')">🔍</div>
+                <span class="dot close" onclick="toggleWindow('win-registry')"></span>
+            </div>
+        </div>
+        <div class="search-ui-container" id="search-win-registry">
+            <input type="text" class="search-input" placeholder="REGISTRY_SEARCH..."
+                oninput="handleSearchInput('win-registry', 'registry-console', this.value)">
+            <span class="search-count" id="search-count-win-registry"></span>
+            <div class="search-nav">
+                <div class="search-arrow" onclick="navigateSearch('win-registry', 'registry-console', -1)">▲</div>
+                <div class="search-arrow" onclick="navigateSearch('win-registry', 'registry-console', 1)">▼</div>
+            </div>
+        </div>
+        <div class="win-body" style="max-height: 60vh; overflow-y: auto;">
+            <div class="console-box">
+                <div class="console-text" style="font-size: 11px;" id="registry-console">
+                    <span class="highlight">>> WEBPAGE-COMPONENTS</span> — status: Planned | Static set of reusable
+                    HTML/JS components served through a lightweight local web server.<br>
+                    <span class="highlight">>> WEBAPP-MANAGE</span> — status: In Progress | Systems Development
+                    Documentation & Intelligence Platform (Advanced DMS).<br>
+                    <span class="highlight">>> RELIC-RESALE (OCN COLLECTIONS)</span> — status: Planned | Inventory
+                    system for managing toy-related stock and sales.<br>
+                    <span class="highlight">>> ERJAM-TOYS-INVENTORY</span> — status: Planned<br>
+                    <span class="highlight">>> CHATBOT-THINKING</span> — status: Planned | Streamlit-based AI
+                    assistant demonstrating chained thinking.<br>
+                    <span class="highlight">>> OCN CHATBOT</span> — status: Planned | Internal OCN conversational
+                    assistant running locally.<br>
+                    <span class="highlight">>> OCN-SYSDEV-WEBAPP</span> — status: Planned | System developer’s
+                    portal for OCR, parsing, and automation.<br>
+                    <span class="highlight">>> LOCAL_MARKET_ANALYZER</span> — status: Planned | Streamlit-based
+                    market analyzer for electricity data.<br>
+                    <span class="highlight">>> CENTRAL-WEBSITE-FINAL</span> — status: Planned | Static deployment
+                    of IEMOP's central website.<br>
+                    <span class="highlight">>> WESM_GENAI_STARTER_V2</span> — status: Planned | FastAPI-based
+                    starter app for WESM GenAI.<br>
+                    <span class="highlight">>> PULSE_SYSTEM</span> — status: Planned | Advanced FastAPI system with
+                    modular architecture.<br>
+                    <span class="highlight">>> WESM-DEMO</span> — status: Planned | Mock API + Streamlit UI demo
+                    for WESM operations.<br>
+                    <span class="highlight">>> MARKET-DATA-CATALOG</span> — status: Planned | Static web app for
+                    cataloging market data resources.<br>
+                    <span class="highlight">>> WESM_PROD_STARTER</span> — status: Planned | Starter backend app for
+                    WESM production workflows.<br>
+                    <span class="highlight">>> WESM_APP_TMP</span> — status: Planned | Temporary Streamlit
+                    prototype for WESM features.<br>
+                    <span class="highlight">>> MARKET-DATA</span> — status: Planned | Full-stack FastAPI + Next.js
+                    market data portal.<br>
+                    <span class="highlight">>> IEMOP-PULSE-MDAIS</span> — status: Planned | FastAPI service for
+                    Market Data AI Services.<br>
+                    <span class="highlight">>> REDESIGNED-IEMOP-GENAI-new</span> — status: Planned | Redesigned
+                    GenAI-based IEMOP web experience.<br>
+                    <span class="highlight">>> DOCRETRIEVE AI</span> — status: Planned | Streamlit-powered document
+                    retrieval AI app.<br>
+                    <span class="highlight">>> UMI-WEBSITE</span> — status: Planned | Static UMI website for review
+                    and deployment.<br>
+                    <span class="highlight">>> RAG-WORKSPACE-BLUEPRINT</span> — status: Planned | Static reference
+                    blueprint for RAG workspaces.<br>
+                    <span class="highlight">>> OCN-WEB-PROJECT-TRACKER</span> — status: Planned | Webapp to track
+                    projects with RAG chatbot support.<br>
+                    <span class="highlight">>> BLUEPRINT-WESM</span> — status: Planned<br>
+                    <span class="highlight">>> GENAI INSIGHTHUB</span> — status: Planned<br>
+                    <span class="highlight">>> BILLRAG (BILL UPLOADER)</span> — status: Planned | Scanned form
+                    capture and digital conversion.<br>
+                    <span class="highlight">>> HYBRID UNIVERSAL STREAMLIT_RAG</span> — status: Planned<br>
+                    <span class="highlight">>> WEBSCRAPER</span> — status: Planned<br>
+                    <span class="highlight">>> SQL-COPILOT (MOCK)</span> — status: Planned<br>
+                    <span class="highlight">>> WESM_NL2SQL</span> — status: Planned<br>
+                    <span class="highlight">>> RUN-DB-CHATBOT-TEST</span> — status: Planned | Testing tool for
+                    chatbots connected to local DBs.<br>
+                    <span class="highlight">>> OCN-CUSTOM-GPT-TRACKER-REVAMP</span> — status: Planned | Revamped
+                    project tracker with RAG.<br>
+                    <span class="highlight">>> MARKETDATA-ETL-RULEBOOK</span> — status: Planned | Static rulebook
+                    viewer for ETL processes.<br>
+                    <span class="highlight">>> MARKET-SYSTEM</span> — status: Planned | Full backend + static
+                    frontend for market operations.<br>
+                    <span class="highlight">>> ARCHITECTURE-LAB</span> — status: Planned | Static environment for
+                    architecture testing.<br>
+                    <span class="highlight">>> SOTA_DASHBOARD</span> — status: Planned | Dashboard showcasing SOTA
+                    insights.<br>
+                    <span class="highlight">>> WESM-DESIGN-TEMPLATE</span> — status: Planned<br>
+                    <span class="highlight">>> DMS-VERSION-1</span> — status: Planned | Node.js-based server for
+                    DMS prototype.<br>
+                    <span class="highlight">>> COMPLEX-MODULAR-DMS</span> — status: Planned | Single-page Local
+                    Knowledge Assistant console.<br>
+                    <span class="highlight">>> IEMOP_SCRAPER</span> — status: Planned | Automated market data
+                    scraper for IEMOP.<br>
+                    <span class="highlight">>> GENAI-INSIGHT-HUB</span> — status: Planned | LLM interaction app
+                    with image analysis and RAG.<br>
+                    <span class="highlight">>> PIPHO-FORUM-DEC2025</span> — status: Planned | Modernized read-only
+                    archive of legacy forum.<br>
+                    <span class="highlight">>> PDS</span> — status: Planned | Next.js-based Personnel Data Sheet
+                    system.<br>
+                    <span class="highlight">>> LAUNCHER</span> — status: Planned | Premium dashboard landing page
+                    for 50+ projects.<br>
+                    <span class="highlight">>> EAIR-GOV-FRAMEWORK</span> — status: Planned | Enterprise-grade AI
+                    governance platform.<br>
+                    <span class="highlight">>> AION_APP (DMS ChatBot)</span> — status: Planned | Local
+                    privacy-first RAG application.<br>
+                    <span class="highlight">>> AION-DOCRETRIEVE-COMPASS-OCN-DOCS</span> — status: Planned |
+                    AI-powered doc retrieval and navigation.<br>
+                    <span class="highlight">>> WEBSCRAPER-NEW</span> — status: Completed | Universal website
+                    scraper and cloner.<br>
+                    <span class="highlight">>> FACEBOOK-MESSENGER</span> — status: Planned | Assistant app with
+                    React-based inbox.<br>
+                    <span class="highlight">>> RAG-TEST</span> — status: Planned | High-performance doc analysis
+                    with Qdrant.<br>
+                    <span class="highlight">>> SMARTSCAN-REVAMPED (BILLRAG)</span> — status: Planned |
+                    High-performance OCR + RAG platform.<br>
+                    <span class="highlight">>> OCN-DEMO-WEBAPP-INFOGRAPHIC-UI</span> — status: In Progress |
+                    Creative sci-fi console interface.<br>
+                    <span class="highlight">>> AI-DMS-DEMO</span> — status: Completed | Local-first doc management
+                    demo.<br>
+                    <span class="highlight">>> AION-DOCRETRIEVE-COMPASS</span> — status: Completed | Private
+                    AI-powered research assistant.<br>
+                </div>
+            </div>
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-registry')"></div>
+    </div>
+
+    <!-- SYSTEM MANUAL WINDOW -->
+    <div class="window wide-window" id="win-manual" style="top: 10%; left: 20%; height: 80vh;">
+        <div class="win-header">
+            <span class="win-title">OPERATIONAL_MANUAL // FULL_UCS_DOCUMENTATION</span>
+            <div class="win-controls">
+                <div class="search-toggle-btn" onclick="toggleSearch('win-manual')">🔍</div>
+                <span class="dot close" onclick="toggleWindow('win-manual')"></span>
+            </div>
+        </div>
+        <div class="search-ui-container" id="search-win-manual">
+            <input type="text" class="search-input" placeholder="MANUAL_SEARCH..."
+                oninput="handleSearchInput('win-manual', 'manual-console', this.value)">
+            <span class="search-count" id="search-count-win-manual"></span>
+            <div class="search-nav">
+                <div class="search-arrow" onclick="navigateSearch('win-manual', 'manual-console', -1)">▲</div>
+                <div class="search-arrow" onclick="navigateSearch('win-manual', 'manual-console', 1)">▼</div>
+            </div>
+        </div>
+        <div class="win-body" style="height: calc(100% - 35px); overflow-y: auto; padding: 30px;" id="manual-console">
+            <div class="console-text" style="font-size: 13px; color: #ccc;">
+                <h1>UNIFIED CLASSIFICATION STANDARD (UCS)</h1>
+                <p>The UCS is the single source of truth for classifying any software system, GPT, or AI tool by primary
+                    user outcome.</p>
+
+                <hr>
+
+                <h2>Knowledge, Documents & Research (KDR)</h2>
+                <p>Outcome: Users obtain trusted understanding from text-based sources (internal or provided), or refine
+                    language with high fidelity.</p>
+                <h2>Governance, Risk, Compliance & Legal (GRCL)</h2>
+                <p>Outcome: Users enforce policy, manage risk, and produce audit-ready decision trails for regulated or
+                    controlled processes.</p>
+                <h2>Data Acquisition & Offline Mirrors (DAOM)</h2>
+                <p>Outcome: Users collect, mirror, and structure external web data for reuse elsewhere.</p>
+                <h2>Analytics, Market & Operational Intelligence (AMOI)</h2>
+                <p>Outcome: Users interpret numeric data to make decisions: forecasting, anomaly detection, alerting,
+                    and KPI-driven narrative.</p>
+                <h2>Engineering Productivity, Automation & Toolchains (EPAT)</h2>
+                <p>Outcome: Users build, run, and automate technical work: software delivery, integrations, operations,
+                    and execution.</p>
+                <h2>Learning, Training & Assessment (LTA)</h2>
+                <p>Outcome: Users teach, learn, and measure performance (progress, competency, certification).</p>
+                <h2>Creative, Media & Experience Layers (CMEL)</h2>
+                <p>Outcome: Users create or shape media/creative outputs or use high-fidelity presentation shells
+                    designed for showcasing modules and experiences.</p>
+                <h2>Culture, Leisure & Faith (CLF)</h2>
+                <p>Outcome: Users gain personal enrichment: spiritual well-being, heritage, entertainment, hobbies, and
+                    leisure planning.</p>
+
+                <hr>
+
+                <h1>SERVICES & ENGAGEMENT</h1>
+                <h3>01. Workshop: Activating the Power of Generative AI</h3>
+                <p>Empower your team with AI tools that are secure, private, and immediately applicable. Most
+                    organizations fear AI because of data leakage. In this signature workshop, I bridge the gap between
+                    modern capability and enterprise security.</p>
+
+                <h3>02. Consultancy: Secure AI Strategy & Adoption</h3>
+                <p>Transitioning legacy operations into the AI era without the risk. Leveraging over three decades of
+                    experience in the Philippine power sector, I advise organizations on how to adopt AI solutions that
+                    are compliant, secure, and robust.</p>
+
+                <h3>03. Custom Prototyping & Development</h3>
+                <p>Building the "brains" of your next internal tool. I develop OS-agnostic, open-source web applications
+                    designed to run entirely offline.</p>
+
+                <footer>
+                    **OCN_OPERATIONAL_MANUAL** | REVISION: 2025.A
+                </footer>
+            </div>
+        </div>
+        <div class="win-resize-handle" onmousedown="initResize(event, 'win-manual')"></div>
+    </div>
+
+    <script src="https://unpkg.com/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
