@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uplink | ORLEE NINON</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div class="user-id-badge">
+        <div class="glitch-text" data-text="ORLEE_NINON">ORLEE_NINON</div>
+        <div class="status-indicator">SYSTEM_ADMIN</div>
+    </div>
+
+    <nav class="panel-nav">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="career.html" class="nav-link">CAREER</a>
+        <a href="enthusiast.html" class="nav-link">ENTHUSIAST</a>
+        <a href="collector.html" class="nav-link">COLLECTOR</a>
+        <span class="nav-time" id="sys-time">00:00:00</span>
+    </nav>
+
+    <section id="panel-uplink" class="panel">
+        <div class="panel-header">
+            <span class="panel-title">INTELLIGENCE_INQUIRY // INBOUND_CHANNEL</span>
+        </div>
+        <div class="panel-content">
+            <div style="text-align:center; margin-bottom:15px;">
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" stroke="var(--cyan)" stroke-width="2" fill="none" />
+                    <circle cx="25" cy="25" r="10" fill="var(--cyan)">
+                        <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div style="font-size:10px; color:var(--cyan); letter-spacing:2px; margin-top:5px;">CHANNEL_OPEN</div>
+            </div>
+
+            <div class="console-header" style="text-align:center; position:static; margin-bottom:10px;">[
+                INITIATE_DIRECT_UPLINK ]</div>
+
+            <form class="tech-form" style="display:flex; flex-direction:column; gap:12px;">
+                <input type="text" placeholder="SUBJECT_IDENTIFIER"
+                    style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-dim); color:var(--cyan); padding:8px; font-family:var(--font-mono); font-size:11px;">
+
+                <div style="font-size:9px; color:#666; margin-bottom:-8px;">SELECT_INQUIRY_TYPE:</div>
+                <div class="radio-group" style="display:flex; gap:15px; font-size:10px; color:#aaa;">
+                    <label style="cursor:pointer;"><input type="radio" name="type" checked> GENAI_WORKSHOP</label>
+                    <label style="cursor:pointer;"><input type="radio" name="type"> STRATEGY_CONSULT</label>
+                    <label style="cursor:pointer;"><input type="radio" name="type"> CUSTOM_BUILD</label>
+                </div>
+
+                <textarea placeholder="INQUIRY_PAYLOAD"
+                    style="width:100%; height:80px; background:rgba(0,0,0,0.5); border:1px solid var(--border-dim); color:#fff; padding:8px; font-family:var(--font-mono); font-size:11px; resize:none;"></textarea>
+
+                <button type="button" class="btn-activate" onclick="transmitUplink()"
+                    style="width:100%; height:35px; background:rgba(0,242,255,0.1); border:1px solid var(--cyan); color:white; cursor:pointer; font-family:var(--font-mono); letter-spacing:1px; transition:0.3s; font-weight:bold;">TRANSMIT_PACKET</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enthusiast // OCN_OS v3.0</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="marked.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="sys-nav">
+        <div class="brand-id">ORLEE_NINON</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">HOME</a>
+            <a href="career.html" class="nav-btn">CAREER</a>
+            <a href="enthusiast.html" class="nav-btn active">ENTHUSIAST</a>
+            <a href="collector.html" class="nav-btn">COLLECTOR</a>
+        </div>
+    </nav>
+
+    <aside class="sys-sidebar">
+        <div class="deck-header">VISUAL_CORE // PHOTOGRAPHY</div>
+        <div class="deck-menu">
+            <div class="deck-item active" onclick="revealData('main-console', 'photo_intro', this)">
+                OVERVIEW
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'photo_gallery', this)">
+                GALLERY_INDEX
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'photo_profile', this)">
+                PROFILE
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'macro_gallery', this)">
+                MACRO
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'portraits_gallery', this)">
+                PORTRAITS
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'magazine_gallery', this)">
+                MAGAZINE COVER
+            </div>
+        </div>
+    </aside>
+
+    <main class="sys-viewport">
+        <div class="data-stream" id="main-console">
+            <div class="console-content">
+                <h1>> PHOTOGRAPHY_MODULE</h1>
+                <p>Loading Visual Archives...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="sys-footer">
+        <div class="sys-status">SYSTEM: ONLINE_V3.0 // GRID_SECURE</div>
+        <div class="sys-copyright">© 2026 ORLEE NINON // ALL RIGHTS RESERVED</div>
+    </footer>
+
+    <div class="scanlines"></div>
+
+    <div id="photo_intro" style="display:none;">
+        # THE FIVE Cs: A PHOTOGRAPHIC JOURNEY
+
+        ## INTRODUCTION
+        My photography journey didn't start with a manual; it started with a curiosity for the small details and the
+        people around me. Over the years—primarily through the lens of macro photography and intimate portraits—I
+        realized my work naturally evolved into five distinct pillars. These aren't just frameworks; they are the
+        milestones of my artistic growth, which I call the "Five Cs."
+
+        ## CONCEPTUAL PHOTOGRAPHY
+        Early on, I realized a sharp macro shot wasn't enough; I wanted to imply a bigger world. Conceptual photography
+        became my way of embedding a narrative into the smallest subjects. Whether it was the struggle of an insect or
+        the isolation of a single drop of water, I learned to make simple subjects tell complex stories about
+        environment, survival, and beauty.
+
+        ## CANDID PHOTOGRAPHY
+        While macro requires patience, capturing people requires anticipation. In my portrait work, I moved away from
+        stiff, structured poses. I discovered that the most powerful images were taken in between the "ready"
+        moments—the authentic, unguarded split-seconds that reveal a subject's true character. This taught me to honor
+        the raw reality of the moment over perfection.
+
+        ## CREATIVE PHOTOGRAPHY
+        This became my playground for experimentation. Pushing the limits of macro lenses, I explored distorted
+        perspectives, extreme depth of field, and abstract lighting. I found alien landscapes in everyday household
+        objects and drama in minute textures. This phase taught me that photography isn't just about recording reality;
+        it's about actively interpreting it to ignite the imagination.
+
+        ## COLORFUL PHOTOGRAPHY
+        I eventually learned that color isn't just decoration; it's emotion. From the iridescent sheen of a beetle's
+        shell to the mood lighting of a dramatic portrait, I began using vibrant hues intentionally. I realized how
+        specific color combinations could direct the viewer's eye and dictate the entire feeling of a piece, creating a
+        vivid visual experience that monochrome simply couldn't replicate.
+
+        ## CAPTIVATING PHOTOGRAPHY
+        This is the culmination of my journey. A photo can be technically perfect but boring. I strive for
+        "Captivating"—the X-factor that makes a viewer stop scrolling and stare. It is the synthesis of technical skill,
+        artistic vision, and emotional resonance. Whether it's a haunting portrait or a mesmerizing macro detail, my
+        goal is to leave a lasting impression on both an intellectual and emotional level.
+
+        ## CONCLUSION
+        These frameworks aren't rules I found in a book; they are the lessons I've lived. From the tiniest macro details
+        to the most expressive portraits, these Five Cs define how I analyze and capture the world. They represent my
+        history, my style, and the lens through which I share my perspective.
+    </div>
+
+    <div id="photo_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > VISUAL_ARCHIVES // INDEX</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/0Z3Z2773-2A-Z5.jpg')">
+                <img src="assets/0Z3Z2773-2A-Z5.jpg" alt="Macro Detail 01">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/GJ4C6832h-Z5.jpg')">
+                <img src="assets/GJ4C6832h-Z5.jpg" alt="Urban Texture">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/IMG_1322g-Z5.jpg')">
+                <img src="assets/IMG_1322g-Z5.jpg" alt="Industrial Rust">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/JRC_4660-A1.jpg')">
+                <img src="assets/JRC_4660-A1.jpg" alt="Neon Reflection">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/OrleeNinon - spidey.jpg')">
+                <img src="assets/OrleeNinon - spidey.jpg" alt="Spidey Macro">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/ocninon_macro_07.jpg')">
+                <img src="assets/ocninon_macro_07.jpg" alt="Circuit Detail">
+                <div class="overlay">VIEW_DATA</div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div id="photo_profile" style="display: none;">
+        # PHOTOGRAPHER PROFILE
+        **SUBJECT:** ORLEE NINON
+        **SPECIALIZATION:** MACRO PHOTOGRAPHY ADVOCATE
+
+        ---
+
+        ## 01. FOCUS & EXPERTISE
+        Specializing in **macro photography**, capturing the fine detail and texture in nature and still life. I believe
+        in revealing the unseen worlds that exist right under our noses.
+        * **Workshop Facilitator:** Facilitating macro photography workshops for enthusiasts and beginners alike.
+
+        ## 02. COMMUNITY LEADERSHIP
+        **Pinoy Photography Organization (PiPho)**
+        * **President (2024)**
+        * Member since 2006
+
+        **Camera Club Memberships**
+        * **eLarawan Camera Club** (2005-2006)
+        * **Power Focus Camera Club (Napocor)** (1994–2000)
+
+        ## 03. TRAINING
+        * Completed **FPPF Basic and Advanced Photography Courses** (Oct 2005)
+    </div>
+
+    <div id="macro_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > VISUAL_ARCHIVES // MACRO_WORLD</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/6M8A9573enlarged v2a.jpg')"><img
+                    src="assets/MACRO/6M8A9573enlarged v2a.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/6M8A9581.jpg')"><img
+                    src="assets/MACRO/6M8A9581.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/7_DECIDING WHATS BEST.JPG')"><img
+                    src="assets/MACRO/7_DECIDING WHATS BEST.JPG">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/8_FINALLY IT IS.JPG')"><img
+                    src="assets/MACRO/8_FINALLY IT IS.JPG">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/9_FINAL_IMAGE.jpg')"><img
+                    src="assets/MACRO/9_FINAL_IMAGE.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/Bee Leaf Cutter - Balagtas.jpg')"><img
+                    src="assets/MACRO/Bee Leaf Cutter - Balagtas.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/flower&insect_dc.jpg')"><img
+                    src="assets/MACRO/flower&insect_dc.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/GJ4C0427f2.jpg')"><img
+                    src="assets/MACRO/GJ4C0427f2.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/GJ4C1575_FIN.jpg')"><img
+                    src="assets/MACRO/GJ4C1575_FIN.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/GJ4C2114f.jpg')"><img
+                    src="assets/MACRO/GJ4C2114f.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/GJ4C6832h.jpg')"><img
+                    src="assets/MACRO/GJ4C6832h.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0313-Flock of Grasshoppers.jpg')"><img
+                    src="assets/MACRO/IMG_0313-Flock of Grasshoppers.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0493.jpg')"><img
+                    src="assets/MACRO/IMG_0493.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0684-Green-LadyBug-02.jpg')"><img
+                    src="assets/MACRO/IMG_0684-Green-LadyBug-02.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0742-LongLeggedFly.jpg')"><img
+                    src="assets/MACRO/IMG_0742-LongLeggedFly.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0946.jpg')"><img
+                    src="assets/MACRO/IMG_0946.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_0974.jpg')"><img
+                    src="assets/MACRO/IMG_0974.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_1344g1.jpg')"><img
+                    src="assets/MACRO/IMG_1344g1.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_1739g1.jpg')"><img
+                    src="assets/MACRO/IMG_1739g1.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_3006b.jpg')"><img
+                    src="assets/MACRO/IMG_3006b.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_4759hires.jpg')"><img
+                    src="assets/MACRO/IMG_4759hires.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_4762-rubberfly-prey-edited.jpg')"><img
+                    src="assets/MACRO/IMG_4762-rubberfly-prey-edited.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_7844H.jpg')"><img
+                    src="assets/MACRO/IMG_7844H.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_9635.jpg')"><img
+                    src="assets/MACRO/IMG_9635.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/IMG_9908.jpg')"><img
+                    src="assets/MACRO/IMG_9908.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/MB_Entry03.jpg')"><img
+                    src="assets/MACRO/MB_Entry03.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/MB_Entry05.jpg')"><img
+                    src="assets/MACRO/MB_Entry05.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/MB_Entry09 a.jpg')"><img
+                    src="assets/MACRO/MB_Entry09 a.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/OCNINON_Pipho_6th_Anniv_screen01.jpg')"><img
+                    src="assets/MACRO/OCNINON_Pipho_6th_Anniv_screen01.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/MACRO/red_&_green.jpg')"><img
+                    src="assets/MACRO/red_&_green.jpg">
+                <div class="overlay">VIEW_MACRO</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portraits_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > VISUAL_ARCHIVES // PORTRAITS</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/0Z3Z7659-hires.jpg')"><img
+                    src="assets/PORTRAITS/0Z3Z7659-hires.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/A94A0424A1WEB19ab.jpg')"><img
+                    src="assets/PORTRAITS/A94A0424A1WEB19ab.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/A94A0870A2.jpg')"><img
+                    src="assets/PORTRAITS/A94A0870A2.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/AY8T1905.jpg')"><img
+                    src="assets/PORTRAITS/AY8T1905.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/AY8T2437.jpg')"><img
+                    src="assets/PORTRAITS/AY8T2437.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/AY8T2508.jpg')"><img
+                    src="assets/PORTRAITS/AY8T2508.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/AY8T5711.jpg')"><img
+                    src="assets/PORTRAITS/AY8T5711.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSCF9353A.jpg')"><img
+                    src="assets/PORTRAITS/DSCF9353A.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_1083ab.jpg')"><img
+                    src="assets/PORTRAITS/DSC_1083ab.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_2877.jpg')"><img
+                    src="assets/PORTRAITS/DSC_2877.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_3607-2.jpg')"><img
+                    src="assets/PORTRAITS/DSC_3607-2.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_3740.jpg')"><img
+                    src="assets/PORTRAITS/DSC_3740.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_4161-PhotofolioWatermark.jpg')"><img
+                    src="assets/PORTRAITS/DSC_4161-PhotofolioWatermark.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/DSC_4534_pp.jpg')"><img
+                    src="assets/PORTRAITS/DSC_4534_pp.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item"
+                onclick="openLightbox('assets/PORTRAITS/JRC_3781-A2 with HALPAA Watermarks 2021.jpg')"><img
+                    src="assets/PORTRAITS/JRC_3781-A2 with HALPAA Watermarks 2021.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_4463.jpg')"><img
+                    src="assets/PORTRAITS/JRC_4463.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_5343.jpg')"><img
+                    src="assets/PORTRAITS/JRC_5343.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_62451a.jpg')"><img
+                    src="assets/PORTRAITS/JRC_62451a.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_6781a2.jpg')"><img
+                    src="assets/PORTRAITS/JRC_6781a2.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_9056.jpg')"><img
+                    src="assets/PORTRAITS/JRC_9056.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/JRC_9761abc.jpg')"><img
+                    src="assets/PORTRAITS/JRC_9761abc.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/PORTRAITS/P2070011.jpg')"><img
+                    src="assets/PORTRAITS/P2070011.jpg">
+                <div class="overlay">VIEW_PORTRAIT</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="magazine_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > VISUAL_ARCHIVES // COVERS</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I1 ver1A.png')"><img
+                    src="assets/magazines/D-FACETS V1 I1 ver1A.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I2 ver1.png')"><img
+                    src="assets/magazines/D-FACETS V1 I2 ver1.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I3 ver1.png')"><img
+                    src="assets/magazines/D-FACETS V1 I3 ver1.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I4 ver1.png')"><img
+                    src="assets/magazines/D-FACETS V1 I4 ver1.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I5 ver1.png')"><img
+                    src="assets/magazines/D-FACETS V1 I5 ver1.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/magazines/D-FACETS V1 I7 ver1.png')"><img
+                    src="assets/magazines/D-FACETS V1 I7 ver1.png">
+                <div class="overlay">VIEW_COVER</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL (Hidden by default) -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Zoom View">
+            <div id="magnifier-lens" class="magnifier-lens"></div>
+        </div>
+        <div class="lightbox-caption">> MAGNIFICATION_MODE: ACTIVE</div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const firstItem = document.querySelector('.deck-item');
+            if (firstItem) revealData('main-console', 'photo_intro', firstItem);
+        });
+    </script>
+</body>
+
+</html>

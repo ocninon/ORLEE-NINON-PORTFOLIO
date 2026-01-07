@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career // OCN_OS v3.0</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="marked.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 1. SYSTEM NAVIGATION -->
+    <nav class="sys-nav">
+        <div class="brand-id">ORLEE_NINON</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">HOME</a>
+            <a href="career.html" class="nav-btn active">CAREER</a>
+            <a href="enthusiast.html" class="nav-btn">ENTHUSIAST</a>
+            <a href="collector.html" class="nav-btn">COLLECTOR</a>
+        </div>
+    </nav>
+
+    <!-- 2. COMMAND DECK (SIDEBAR) -->
+    <aside class="sys-sidebar">
+        <div class="deck-header">PROFESSIONAL_CORE // IT_SYS</div>
+        <div class="deck-menu">
+            <div class="deck-item active" onclick="revealData('main-console', 'bio_data', this)">
+                IDENTITY
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'legacy_data', this)">
+                LEGACY
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'ai_data', this)">
+                SECURE_AI
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'arsenal_ui', this)">
+                ARSENAL
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'registry_data', this)">
+                REGISTRY
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'manual_data', this)">
+                MANUAL
+            </div>
+        </div>
+    </aside>
+
+    <!-- 3. MAIN DATA VIEWPORT -->
+    <main class="sys-viewport">
+        <!-- The scrollable container -->
+        <div class="data-stream" id="main-console">
+            <!-- Initial Load: Bio Data (Auto-triggered by script or default) -->
+            <div class="console-content">
+                <h1>> CAREER_DATA_TERMINAL</h1>
+                <p>[SYSTEM_READY] Awaiting input command...</p>
+                <p>Select a module from the Command Deck to begin.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. SYSTEM FOOTER -->
+    <footer class="sys-footer">
+        <div class="sys-status">SYSTEM: ONLINE_V3.0 // GRID_SECURE</div>
+        <div class="sys-copyright">© 2026 ORLEE NINON // ALL RIGHTS RESERVED</div>
+    </footer>
+
+    <!-- 5. FX LAYERS -->
+    <div class="scanlines"></div>
+
+    <!-- HIDDEN DATA CONTAINERS (Preserved Content) -->
+    <!-- These act as the "Database" for the switcher script -->
+
+    <!-- BIO DATA -->
+    <div id="bio_data" style="display:none;">
+        # OFFICIAL BIOGRAPHICAL DOSSIER
+        **SUBJECT:** ORLEE NINON
+        **ROLE:** IT Systems Planning & Design Manager (Ret.)
+        **CONTACT:** ocninon@gmail.com | 0917-8050683
+
+        > "Bridging Power, Technology, and Creative Innovation."
+
+        ---
+
+        ## 01. PROFESSIONAL SUMMARY
+        **31 Years in the Power & Energy Sector**
+        A seasoned IT professional with over three decades of experience spanning generation, transmission, and
+        electricity market operations.
+
+        * **Expertise:** Enterprise Systems Design, Infrastructure Development, Strategic Planning.
+        * **Leadership:** Retiree as **IT Systems Planning & Design Manager** at IEMOP.
+        * **Audit:** 10 years as **Lead Auditor** for Integrated Management Systems (IMS), specializing in Quality (QMS)
+        and Information Security (ISMS).
+
+        ## 02. ORGANIZATIONAL LEGACY
+        * **National Power Corporation (Napocor)**
+        * **National Transmission Corporation (TransCo)**
+        * **Philippine Electricity Market Corporation (PEMC)**
+        * **Independent Electricity Market Operator of the Philippines (IEMOP)**
+    </div>
+
+    <!-- LEGACY DATA -->
+    <div id="legacy_data" style="display:none;">
+        # CRITICAL INFRASTRUCTURE LEGACY REPORT
+        **DOCUMENT_STAMP:** OCN-LEG-31Y-FINAL
+        **PERIOD_OF_SERVICE:** 1990 - 2021
+
+        ---
+
+        ## 01. SYSTEMS ARCHITECTURE HIERARCHY
+
+        | ROLE | ORGANIZATION | PERIOD |
+        | :--- | :--- | :--- |
+        | **Grid Systems Lead** | TRANSCO | 1990-2003 |
+        | **Market Systems Architect** | PEMC | 2003-2018 |
+        | **Principal Specialist** | IEMOP | 2018-Present |
+
+        ---
+
+        ## 02. OPERATIONAL IMPACT
+        * **2003 Market Launch:** Served as one of the original technical architects during the birth of the Philippine
+        Electricity Market.
+        * **Service Tenure:** Dedicated over 31 years to ensuring the continuous operation of mission-critical energy
+        platforms.
+        * **Legacy Transition:** Managing the structured migration from monolithic legacy mainframes to distributed
+        modern architectures.
+
+        ---
+
+        ## 03. VISUAL IDENTITY & BRANDING
+        * **WESM Official Logo:** Designed the primary mark for the Wholesale Electricity Spot Market.
+        * **PEMC Official Logo:** Designed the institutional identity for the market corporation.
+    </div>
+
+    <!-- AI DATA -->
+    <div id="ai_data" style="display:none;">
+        # GENERATIVE AI INNOVATION
+        **STATUS:** PIONEERING_PHASE
+        **ROLE:** GENERATIVE AI ADVOCATE
+
+        ---
+
+        ## 01. INNOVATION TRACK RECORD
+        Pioneering work in AI with a focus on **secure, custom intelligent systems**.
+
+        ### DEVELOPER STATS
+        * **Custom GPTs:** Developed **~200 Custom AI Assistants** across 16 domains.
+        * **Domains:** Photography, Visual Design, Business Strategy, Document Automation, and Education.
+        * **Applications:** Currently building AI-integrated prototype applications to streamline workflows and enhance
+        decision-making.
+
+        ### KNOWLEDGE TRANSFER
+        * **Workshop Leader:** Creator of *"Activating the Power of Generative AI"*, an immersive experience for
+        professionals and creatives exploring AI capabilities.
+
+        ---
+
+        ## 02. DEVELOPMENT PHILOSOPHY
+        The mandate is to bring AI to the data, not the data to the AI.
+        * **Local-First:** Privacy-centric architectures.
+        * **Empowerment:** Tools that augment human creativity, not replace it.
+    </div>
+
+    <!-- ARSENAL UI (Raw HTML Grid) -->
+    <div id="arsenal_ui" style="display:none;" data-html="true">
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+            <div class="viz-item" onclick="revealData('main-console', 'p1_data', this)"
+                style="background: rgba(0, 240, 255, 0.05); padding: 20px; border: 1px solid rgba(86,94,106,0.5); cursor: pointer;">
+                <div style="font-size: 30px; margin-bottom: 10px;">💻</div>
+                <div style="font-family: 'Rajdhani'; font-weight: 700; color: #00F0FF;">CORE_AI</div>
+            </div>
+            <div class="viz-item" onclick="revealData('main-console', 'p2_data', this)"
+                style="background: rgba(0, 240, 255, 0.05); padding: 20px; border: 1px solid rgba(86,94,106,0.5); cursor: pointer;">
+                <div style="font-size: 30px; margin-bottom: 10px;">🤖</div>
+                <div style="font-family: 'Rajdhani'; font-weight: 700; color: #00F0FF;">AGENTS</div>
+            </div>
+            <div class="viz-item" onclick="revealData('main-console', 'p3_data', this)"
+                style="background: rgba(0, 240, 255, 0.05); padding: 20px; border: 1px solid rgba(86,94,106,0.5); cursor: pointer;">
+                <div style="font-size: 30px; margin-bottom: 10px;">⚡</div>
+                <div style="font-family: 'Rajdhani'; font-weight: 700; color: #00F0FF;">BRAND</div>
+            </div>
+        </div>
+        <div style="margin-top:20px; text-align:center; color:#666; font-family: 'Rajdhani';">
+            [SELECT_PROJECT_MODULE]
+        </div>
+    </div>
+
+    <!-- PROJECT DATA FOR ARSENAL -->
+    <div id="p1_data" style="display:none;">
+        # FOUNDATIONAL INTELLIGENCE SYSTEMS (CORE AI)
+        **CAT:** Systems Architecture / ML Ops
+        **STAMP:** OCN-AI-01-CORE
+
+        ---
+
+        ## SYSTEM ARCHITECTURE
+        Implementation of **Local-First** Retrieval-Augmented Generation (RAG) pipelines. All inference is processed
+        on-premise, ensuring zero data leakage.
+
+        ### TECHNOLOGY STACK
+        * **LLM Backend:** Llama 3 (8B/70B), Mistral Instruct.
+        * **Vector Querying:** Qdrant / ChromaDB for high-speed semantic search.
+        * **Orchestration:** Custom Python middleware optimized for minimal latency.
+    </div>
+
+    <div id="p2_data" style="display:none;">
+        # AUTONOMOUS AGENTIC WORKFLOWS
+        **CAT:** Automation / Tool Usage
+        **STAMP:** OCN-AI-02-AGENT
+
+        ---
+
+        ## COGNITIVE CAPABILITIES
+        Deploying "Reasoning Engines" capable of multi-step problem solving. Unlike standard chatbots, these agents
+        possess `execute` permissions.
+
+        ### OPERATIONAL SCOPE
+        * **Self-Correction:** Agents iterate on code or text outputs until success criteria are met.
+        * **Safe-Harbor Execution:** Sandboxed environments for tool usage to prevent system compromise.
+    </div>
+
+    <div id="p3_data" style="display:none;">
+        # VISUAL IDENTITY & CYBER AESTHETICS
+        **CAT:** Design Language / UX
+        **STAMP:** OCN-VIS-03-BRAND
+
+        ---
+
+        ## DESIGN PHILOSOPHY
+        The **Neural Portfolio** aesthetic is a deliberate fusion of "High-Tech / Low-Level". It bridges the gap between
+        retro command-line intimacy and modern motion graphics.
+    </div>
+
+    <!-- REGISTRY DATA -->
+    <div id="registry_data" style="display:none;">
+        # DATABASE_DUMP // USC_CLASSIFIED_SYSTEMS
+        **CLASSIFICATION:** UNIFIED_SYSTEMS_LOG
+        **STATUS:** ACTIVE_TRACKING
+
+        ---
+
+        | PROJECT ID | STATUS | UCS | DESCRIPTION |
+        | :--- | :--- | :--- | :--- |
+        | **WEBPAGE-COMPONENTS** | Planned | EPAT | Static set of reusable HTML/JS components served through a
+        lightweight local web server. |
+        | **WEBAPP-MANAGE** | In Progress | KDR | Systems Development Documentation & Intelligence Platform. |
+        | **OCN-DEMO-WEBAPP** | In Progress | CMEL | Creative sci-fi console interface. |
+        | **AI-DMS-DEMO** | Completed | KDR | Local-first doc management demo. |
+        | **AION-DOCRETRIEVE-COMPASS** | Completed | KDR | Private AI-powered research assistant. |
+        | **WEBSCRAPER-NEW** | Completed | DAOM | Universal website scraper and cloner. |
+    </div>
+
+    <!-- MANUAL DATA -->
+    <div id="manual_data" style="display:none;">
+        # OPERATIONAL_MANUAL // FULL_UCS_DOCUMENTATION
+
+        ## UNIFIED CLASSIFICATION STANDARD (UCS)
+        The UCS is the single source of truth for classifying any software system, GPT, or AI tool by primary user
+        outcome.
+
+        ---
+
+        ### 1. Knowledge, Documents & Research (KDR)
+        Outcome: Users obtain trusted understanding from text-based sources (internal or provided), or refine language
+        with high fidelity.
+
+        ### 2. Governance, Risk, Compliance & Legal (GRCL)
+        Outcome: Users enforce policy, manage risk, and produce audit-ready decision trails for regulated or controlled
+        processes.
+
+        ### 3. Data Acquisition & Offline Mirrors (DAOM)
+        Outcome: Users collect, mirror, and structure external web data for reuse elsewhere.
+
+        ### 4. Analytics, Market & Operational Intelligence (AMOI)
+        Outcome: Users interpret numeric data to make decisions: forecasting, anomaly detection, alerting, and
+        KPI-driven narrative.
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Auto-load Identity on startup
+        window.addEventListener('load', () => {
+            const firstItem = document.querySelector('.deck-item');
+            if (firstItem) revealData('main-console', 'bio_data', firstItem);
+        });
+    </script>
+</body>
+
+</html>

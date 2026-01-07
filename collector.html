@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collector // OCN_OS v3.0</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="marked.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="sys-nav">
+        <div class="brand-id">ORLEE_NINON</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">HOME</a>
+            <a href="career.html" class="nav-btn">CAREER</a>
+            <a href="enthusiast.html" class="nav-btn">ENTHUSIAST</a>
+            <a href="collector.html" class="nav-btn active">COLLECTOR</a>
+        </div>
+    </nav>
+
+    <aside class="sys-sidebar">
+        <div class="deck-header">ARCHIVE_CORE // TOYS & VINTAGE</div>
+        <div class="deck-menu">
+            <div class="deck-item active" onclick="revealData('main-console', 'col_intro', this)">
+                COLLECTION_LOG
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'col_wishlist', this)">
+                ACQUISITION_TARGETS
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'camera_gallery', this)">
+                CAMERAS
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'bike_gallery', this)">
+                BIKES
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'toys_gallery', this)">
+                TOYS
+            </div>
+            <div class="deck-item" onclick="revealData('main-console', 'clocks_gallery', this)">
+                CLOCKS
+            </div>
+        </div>
+    </aside>
+
+    <main class="sys-viewport">
+        <div class="data-stream" id="main-console">
+            <div class="console-content">
+                <h1>> COLLECTOR_MODULE</h1>
+                <p>Accessing Archive Database...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="sys-footer">
+        <div class="sys-status">SYSTEM: ONLINE_V3.0 // GRID_SECURE</div>
+        <div class="sys-copyright">© 2026 ORLEE NINON // ALL RIGHTS RESERVED</div>
+    </footer>
+
+    <div class="scanlines"></div>
+
+    <div id="col_intro" style="display:none;">
+        # THE_COLLECTIVE // VINTAGE_TOYS
+        **CLASSIFICATION:** HOBBYIST_ARCHIVE
+        **FOCUS:** 80s/90s MECHA & ROBOTICS
+
+        > "Preserving the artifacts of imagination from the golden age of plastic."
+
+        ---
+
+        ## 01. MAIN SERIES
+        * **Transformers G1:** Complete 1984 line.
+        * **Macross / Robotech:** Valkyrie VF-1S restorations.
+        * **Zoids:** Mechanics Series (1983-1990).
+
+        ## 02. RESTORATION PROJECTS
+        Currently working on restoring a **1985 Metroplex** (missing rubber tires) and a **Voltes V** (Popy Version)
+        refreshing chrome parts.
+    </div>
+
+    <div id="col_wishlist" style="display:none;">
+        # ACQUISITION_TARGETS // 2026
+
+        | PRIORITY | ITEM NAME | YEAR | CONDITION |
+        | :--- | :--- | :--- | :--- |
+        | **HIGH** | Omega Supreme (Boxed) | 1985 | C9 |
+        | **MED** | Trypticon (Accessories) | 1986 | Parts |
+        | **LOW** | Gobots Command Center | 1984 | C8 |
+
+        > *[ DATABASE QUERY COMPLETE ]*
+    </div>
+
+    <div id="camera_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > ARCHIVE // VINTAGE_CAMERAS</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2198.JPG')"><img
+                    src="assets/cameras/2I5A2198.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2203.JPG')"><img
+                    src="assets/cameras/2I5A2203.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2210.JPG')"><img
+                    src="assets/cameras/2I5A2210.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2214.JPG')"><img
+                    src="assets/cameras/2I5A2214.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2219.JPG')"><img
+                    src="assets/cameras/2I5A2219.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2224.JPG')"><img
+                    src="assets/cameras/2I5A2224.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2234.JPG')"><img
+                    src="assets/cameras/2I5A2234.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2238.JPG')"><img
+                    src="assets/cameras/2I5A2238.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2242.JPG')"><img
+                    src="assets/cameras/2I5A2242.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2246.JPG')"><img
+                    src="assets/cameras/2I5A2246.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2254.JPG')"><img
+                    src="assets/cameras/2I5A2254.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2285.JPG')"><img
+                    src="assets/cameras/2I5A2285.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2322.JPG')"><img
+                    src="assets/cameras/2I5A2322.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2327.JPG')"><img
+                    src="assets/cameras/2I5A2327.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2414.JPG')"><img
+                    src="assets/cameras/2I5A2414.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2521.JPG')"><img
+                    src="assets/cameras/2I5A2521.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2561.JPG')"><img
+                    src="assets/cameras/2I5A2561.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2610.JPG')"><img
+                    src="assets/cameras/2I5A2610.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2656.JPG')"><img
+                    src="assets/cameras/2I5A2656.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2682.JPG')"><img
+                    src="assets/cameras/2I5A2682.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2706.JPG')"><img
+                    src="assets/cameras/2I5A2706.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2743.JPG')"><img
+                    src="assets/cameras/2I5A2743.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/2I5A2757.JPG')"><img
+                    src="assets/cameras/2I5A2757.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/cameras/DSC02594.JPG')"><img
+                    src="assets/cameras/DSC02594.JPG">
+                <div class="overlay">VIEW_CAM</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bike_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > ARCHIVE // BIKES</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5232.jpg')"><img
+                    src="assets/BIKES/2I5A5232.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5236.jpg')"><img
+                    src="assets/BIKES/2I5A5236.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5245.jpg')"><img
+                    src="assets/BIKES/2I5A5245.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5251.jpg')"><img
+                    src="assets/BIKES/2I5A5251.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5432.jpg')"><img
+                    src="assets/BIKES/2I5A5432.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5433.jpg')"><img
+                    src="assets/BIKES/2I5A5433.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5439.jpg')"><img
+                    src="assets/BIKES/2I5A5439.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5448.jpg')"><img
+                    src="assets/BIKES/2I5A5448.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5455.jpg')"><img
+                    src="assets/BIKES/2I5A5455.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5461.jpg')"><img
+                    src="assets/BIKES/2I5A5461.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5465.jpg')"><img
+                    src="assets/BIKES/2I5A5465.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5472.jpg')"><img
+                    src="assets/BIKES/2I5A5472.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A5474.jpg')"><img
+                    src="assets/BIKES/2I5A5474.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6636.jpg')"><img
+                    src="assets/BIKES/2I5A6636.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6642.jpg')"><img
+                    src="assets/BIKES/2I5A6642.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6650.jpg')"><img
+                    src="assets/BIKES/2I5A6650.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6661.jpg')"><img
+                    src="assets/BIKES/2I5A6661.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6665.jpg')"><img
+                    src="assets/BIKES/2I5A6665.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6668.jpg')"><img
+                    src="assets/BIKES/2I5A6668.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6670.jpg')"><img
+                    src="assets/BIKES/2I5A6670.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6672.jpg')"><img
+                    src="assets/BIKES/2I5A6672.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6674.jpg')"><img
+                    src="assets/BIKES/2I5A6674.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6675.jpg')"><img
+                    src="assets/BIKES/2I5A6675.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6678.jpg')"><img
+                    src="assets/BIKES/2I5A6678.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6679.jpg')"><img
+                    src="assets/BIKES/2I5A6679.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6681.jpg')"><img
+                    src="assets/BIKES/2I5A6681.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6684.jpg')"><img
+                    src="assets/BIKES/2I5A6684.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6686.jpg')"><img
+                    src="assets/BIKES/2I5A6686.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6688.jpg')"><img
+                    src="assets/BIKES/2I5A6688.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6689.jpg')"><img
+                    src="assets/BIKES/2I5A6689.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6691.jpg')"><img
+                    src="assets/BIKES/2I5A6691.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6693.jpg')"><img
+                    src="assets/BIKES/2I5A6693.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6696.jpg')"><img
+                    src="assets/BIKES/2I5A6696.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6698.jpg')"><img
+                    src="assets/BIKES/2I5A6698.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6701.jpg')"><img
+                    src="assets/BIKES/2I5A6701.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6703.jpg')"><img
+                    src="assets/BIKES/2I5A6703.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6705.jpg')"><img
+                    src="assets/BIKES/2I5A6705.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/BIKES/2I5A6708.jpg')"><img
+                    src="assets/BIKES/2I5A6708.jpg">
+                <div class="overlay">VIEW_BIKE</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toys_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > ARCHIVE // TOYS</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5608.jpg')"><img
+                    src="assets/TOYS/2I5A5608.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5617.jpg')"><img
+                    src="assets/TOYS/2I5A5617.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5618.jpg')"><img
+                    src="assets/TOYS/2I5A5618.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5619.jpg')"><img
+                    src="assets/TOYS/2I5A5619.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5620.jpg')"><img
+                    src="assets/TOYS/2I5A5620.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5621.jpg')"><img
+                    src="assets/TOYS/2I5A5621.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5622.jpg')"><img
+                    src="assets/TOYS/2I5A5622.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5623.jpg')"><img
+                    src="assets/TOYS/2I5A5623.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5624.jpg')"><img
+                    src="assets/TOYS/2I5A5624.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5625.jpg')"><img
+                    src="assets/TOYS/2I5A5625.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5626.jpg')"><img
+                    src="assets/TOYS/2I5A5626.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5627.jpg')"><img
+                    src="assets/TOYS/2I5A5627.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5628.jpg')"><img
+                    src="assets/TOYS/2I5A5628.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5629.jpg')"><img
+                    src="assets/TOYS/2I5A5629.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5630.jpg')"><img
+                    src="assets/TOYS/2I5A5630.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5632.jpg')"><img
+                    src="assets/TOYS/2I5A5632.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5633.jpg')"><img
+                    src="assets/TOYS/2I5A5633.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5634.jpg')"><img
+                    src="assets/TOYS/2I5A5634.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5635.jpg')"><img
+                    src="assets/TOYS/2I5A5635.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5636.jpg')"><img
+                    src="assets/TOYS/2I5A5636.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5637.jpg')"><img
+                    src="assets/TOYS/2I5A5637.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5638.jpg')"><img
+                    src="assets/TOYS/2I5A5638.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5639.jpg')"><img
+                    src="assets/TOYS/2I5A5639.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5640.jpg')"><img
+                    src="assets/TOYS/2I5A5640.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5641.jpg')"><img
+                    src="assets/TOYS/2I5A5641.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5642.jpg')"><img
+                    src="assets/TOYS/2I5A5642.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5643.jpg')"><img
+                    src="assets/TOYS/2I5A5643.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/TOYS/2I5A5644.jpg')"><img
+                    src="assets/TOYS/2I5A5644.jpg">
+                <div class="overlay">VIEW_TOY</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="clocks_gallery" style="display:none;" data-html="true">
+        <h1
+            style="color:var(--neon-cyan); border-bottom:2px solid var(--neon-cyan); padding-bottom:10px; margin-bottom:20px;">
+            > ARCHIVE // CLOCKS</h1>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/Cuckoo Clocks 01.jpg')"><img
+                    src="assets/CLOCKS/Cuckoo Clocks 01.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA170181.jpg')"><img
+                    src="assets/CLOCKS/PA170181.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA170183.jpg')"><img
+                    src="assets/CLOCKS/PA170183.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA170184.jpg')"><img
+                    src="assets/CLOCKS/PA170184.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA170186.jpg')"><img
+                    src="assets/CLOCKS/PA170186.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200194-03.jpg')"><img
+                    src="assets/CLOCKS/PA200194-03.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200205-06.jpg')"><img
+                    src="assets/CLOCKS/PA200205-06.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200223-02.jpg')"><img
+                    src="assets/CLOCKS/PA200223-02.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200258-04.jpg')"><img
+                    src="assets/CLOCKS/PA200258-04.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200270-07.jpg')"><img
+                    src="assets/CLOCKS/PA200270-07.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200286-05.jpg')"><img
+                    src="assets/CLOCKS/PA200286-05.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200312-08.jpg')"><img
+                    src="assets/CLOCKS/PA200312-08.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200328-10.jpg')"><img
+                    src="assets/CLOCKS/PA200328-10.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200338-11.jpg')"><img
+                    src="assets/CLOCKS/PA200338-11.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200344-12.jpg')"><img
+                    src="assets/CLOCKS/PA200344-12.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/CLOCKS/PA200354-13.jpg')"><img
+                    src="assets/CLOCKS/PA200354-13.jpg">
+                <div class="overlay">VIEW_CLOCK</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL (Hidden by default) -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Zoom View">
+            <div id="magnifier-lens" class="magnifier-lens"></div>
+        </div>
+        <div class="lightbox-caption">> MAGNIFICATION_MODE: ACTIVE</div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const firstItem = document.querySelector('.deck-item');
+            if (firstItem) revealData('main-console', 'col_intro', firstItem);
+        });
+    </script>
+</body>
+
+</html>
