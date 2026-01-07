@@ -3,22 +3,46 @@
 let zIndex = 100;
 
 // 1. BOOT SEQUENCE & CLOCK
+// 1. BOOT SEQUENCE & CLOCK
 window.onload = () => {
+    // Clock
     setInterval(() => {
         const now = new Date();
-        document.getElementById('sys-time').innerText = now.toLocaleTimeString([], { hour12: false });
+        const timeEl = document.getElementById('sys-time');
+        if (timeEl) timeEl.innerText = now.toLocaleTimeString([], { hour12: false });
     }, 1000);
 
-    setTimeout(() => {
-        const boot = document.getElementById('boot-screen');
-        boot.style.opacity = '0';
+    const boot = document.getElementById('boot-screen');
+    if (boot) {
         setTimeout(() => {
-            boot.style.display = 'none';
-            initParticles();
-            toggleWindow('win-landing');
-        }, 800);
-    }, 1500);
+            boot.style.opacity = '0';
+            setTimeout(() => {
+                boot.style.display = 'none';
+                initParticles();
+                setActiveNav();
+            }, 800);
+        }, 1500);
+    } else {
+        // No boot screen (subpages), init immediately
+        initParticles();
+        setActiveNav();
+    }
 };
+
+// 1a. ACTIVE NAVIGATION STATE
+function setActiveNav() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-btn');
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage ||
+            (currentPage === '' && href === 'index.html') ||
+            (currentPage === 'index.html' && href === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
 
 // 2. DATA REVEAL ENGINE (Robust Reveal with Markdown support)
 let consoleTimers = {}; // Store { consoleId: { timeout, interval } }
@@ -26,26 +50,29 @@ let searchStates = {}; // { consoleId: { currentIdx, matches } }
 
 function revealData(consoleId, dataId, triggerEl) {
     const consoleEl = document.getElementById(consoleId);
-    const consoleBox = consoleEl.closest('.console-box');
+    // In V3, the scrolling container is the consoleEl itself or its parent .data-stream
+    // The previous .console-box logic is replaced by the viewport handling
     const dataEl = document.getElementById(dataId);
     if (!dataEl) return;
 
-    // Use textContent - innerText returns flattened text for hidden elements
-    let rawText = dataEl.textContent || "";
-    // Clean indentation while preserving newlines
-    rawText = rawText.split('\n').map(l => l.replace(/^\s+/, "")).join('\n').trim();
+    const isHtml = dataEl.hasAttribute('data-html');
+    let contentHTML = "";
 
-    let markdownHTML = "";
-    if (typeof marked !== 'undefined') {
-        const md = (typeof marked.parse === 'function') ? marked.parse : (typeof marked === 'function' ? marked : null);
-        if (md) {
-            markdownHTML = (md === marked.parse) ? marked.parse(rawText, { gfm: true, breaks: true }) : md(rawText, { gfm: true, breaks: true });
+    if (isHtml) {
+        contentHTML = dataEl.innerHTML;
+    } else {
+        let rawText = dataEl.textContent || "";
+        rawText = rawText.split('\n').map(l => l.replace(/^\s+/, "")).join('\n').trim();
+
+        if (typeof marked !== 'undefined') {
+            const md = (typeof marked.parse === 'function') ? marked.parse : (typeof marked === 'function' ? marked : null);
+            if (md) {
+                contentHTML = (md === marked.parse) ? marked.parse(rawText, { gfm: true, breaks: false }) : md(rawText, { gfm: true, breaks: false });
+            }
         }
-    }
-
-    // Fallback if marked is missing or fails
-    if (!markdownHTML) {
-        markdownHTML = rawText.replace(/\n/g, '<br>');
+        if (!contentHTML) {
+            contentHTML = rawText.replace(/\n/g, '<br>');
+        }
     }
 
     if (consoleTimers[consoleId]) {
@@ -54,143 +81,68 @@ function revealData(consoleId, dataId, triggerEl) {
     }
     consoleTimers[consoleId] = { timeout: null, interval: null };
 
+    // Update Sidebar Active State
     const siblings = triggerEl.parentElement.children;
-    for (let s of siblings) s.classList.remove('selected');
-    triggerEl.classList.add('selected');
+    for (let s of siblings) {
+        s.classList.remove('active');
+    }
+    triggerEl.classList.add('active');
 
-    consoleBox.classList.remove('active');
-    consoleEl.innerHTML = "<span style='color:var(--cyan); opacity:0.5;'>[INITIATING_DECRYPTION]...</span>";
-    consoleEl.dataset.originalHtml = ""; // Clear search backup
+    // Reset Content
+    consoleEl.innerHTML = "<span style='color:var(--neon-cyan); opacity:0.5;'>[INITIATING_DECRYPTION]...</span>";
+    consoleEl.scrollTop = 0; // Scroll to top
+
+    // Clear Search State
+    consoleEl.dataset.originalHtml = "";
     if (searchStates[consoleId]) {
-        if (searchStates[consoleId].winId) {
-            const countEl = document.getElementById(`search-count-${searchStates[consoleId].winId}`);
-            if (countEl) countEl.innerText = "";
-        }
         searchStates[consoleId] = { currentIdx: -1, matches: [] };
     }
 
     consoleTimers[consoleId].timeout = setTimeout(() => {
-        consoleBox.classList.add('active');
-        consoleEl.innerHTML = "";
-        let i = 0;
+        // Render Content
+        consoleEl.innerHTML = contentHTML;
+
+        if (isHtml) return;
+
+        // TYPING EFFECT (Text Only) - V3 Optimization
+        const getAllTextNodes = (node) => {
+            const textNodes = [];
+            const walk = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null, false);
+            let textNode;
+            while (textNode = walk.nextNode()) {
+                if (textNode.textContent.trim()) textNodes.push(textNode);
+            }
+            return textNodes;
+        };
+        const textNodes = getAllTextNodes(consoleEl);
+        const originalTexts = textNodes.map(node => node.textContent);
+        textNodes.forEach(node => node.textContent = '');
+
+        let currentNodeIndex = 0;
+        let currentCharIndex = 0;
+
         consoleTimers[consoleId].interval = setInterval(() => {
-            if (i >= markdownHTML.length) {
+            if (currentNodeIndex >= textNodes.length) {
                 clearInterval(consoleTimers[consoleId].interval);
                 return;
             }
-            if (markdownHTML[i] === '<') {
-                const tagEnd = markdownHTML.indexOf('>', i);
-                if (tagEnd !== -1) {
-                    consoleEl.innerHTML += markdownHTML.substring(i, tagEnd + 1);
-                    i = tagEnd + 1;
-                } else {
-                    consoleEl.innerHTML += markdownHTML[i++];
-                }
-            } else if (markdownHTML[i] === '&') {
-                const entityEnd = markdownHTML.indexOf(';', i);
-                if (entityEnd !== -1 && entityEnd - i < 10) {
-                    consoleEl.innerHTML += markdownHTML.substring(i, entityEnd + 1);
-                    i = entityEnd + 1;
-                } else {
-                    consoleEl.innerHTML += markdownHTML[i++];
-                }
+            const currentNode = textNodes[currentNodeIndex];
+            const fullText = originalTexts[currentNodeIndex];
+
+            if (currentCharIndex < fullText.length) {
+                currentNode.textContent = fullText.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
             } else {
-                consoleEl.innerHTML += markdownHTML[i++];
+                currentNodeIndex++;
+                currentCharIndex = 0;
             }
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-        }, 3);
-    }, 300);
+        }, 2); // Faster typing for modern feel
+    }, 200);
 }
 
-// 3. WINDOW MANAGER
-function toggleWindow(id) {
-    const win = document.getElementById(id);
-    const allWindows = document.querySelectorAll('.window');
 
-    if (win.classList.contains('active')) {
-        win.classList.remove('active');
-    } else {
-        // Fade others and bring this to focus
-        allWindows.forEach(w => w.classList.add('faded'));
-        win.classList.remove('faded');
-        win.classList.add('active');
-        win.style.zIndex = ++zIndex;
 
-        // Prevent Overlap (Smart Positioning if spawned nearby)
-        if (window.innerWidth > 768) {
-            smartPosition(win);
-        }
-    }
-}
 
-function smartPosition(win) {
-    if (window.innerWidth <= 768) return; // Ignore on mobile
-    const others = Array.from(document.querySelectorAll('.window.active')).filter(w => w !== win);
-    let rect = win.getBoundingClientRect();
-
-    others.forEach(other => {
-        let oRect = other.getBoundingClientRect();
-        // Check for intersection
-        if (!(rect.right < oRect.left || rect.left > oRect.right || rect.bottom < oRect.top || rect.top > oRect.bottom)) {
-            // Overlapping! Nudge the new one by 30px
-            win.style.left = (rect.left + 30) + 'px';
-            win.style.top = (rect.top + 30) + 'px';
-        }
-    });
-}
-
-// 4. WINDOW MANAGER (MOUSE & TOUCH)
-document.querySelectorAll('.window').forEach(win => {
-    const header = win.querySelector('.win-header');
-
-    // Focus window on touch/click
-    const focusWindow = () => {
-        document.querySelectorAll('.window').forEach(w => w.classList.add('faded'));
-        win.classList.remove('faded');
-        win.style.zIndex = ++zIndex;
-    };
-    win.addEventListener('mousedown', focusWindow);
-    win.addEventListener('touchstart', focusWindow, { passive: true });
-
-    // Drag Logic
-    const startDrag = (e) => {
-        if (e.target.closest('.win-controls')) return;
-        if (e.type === 'mousedown') e.preventDefault();
-
-        let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-        let clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
-
-        let shiftX = clientX - win.getBoundingClientRect().left;
-        let shiftY = clientY - win.getBoundingClientRect().top;
-
-        function onMove(event) {
-            let moveX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
-            let moveY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
-
-            win.style.left = moveX - shiftX + 'px';
-            win.style.top = moveY - shiftY + 'px';
-            if (event.cancelable) event.preventDefault();
-        }
-
-        function onEnd() {
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onEnd);
-            document.removeEventListener('touchmove', onMove);
-            document.removeEventListener('touchend', onEnd);
-        }
-
-        if (e.type === 'mousedown') {
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onEnd);
-        } else {
-            document.addEventListener('touchmove', onMove, { passive: false });
-            document.addEventListener('touchend', onEnd);
-        }
-    };
-
-    header.addEventListener('mousedown', startDrag);
-    header.addEventListener('touchstart', startDrag, { passive: false });
-});
 
 // 4. BACKGROUND PARTICLES
 const canvas = document.getElementById('bg-canvas');
@@ -251,52 +203,7 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
 });
 
-// 5. RESIZE & SEARCH SYSTEM
-// 5. RESIZE & SEARCH SYSTEM (MOUSE & TOUCH)
-function initResize(e, id) {
-    // Only prevent default if it's not a passive touch start (though usually we want to prevent scroll here)
-    if (e.type === 'mousedown') e.preventDefault();
-    if (e.type === 'touchstart') e.stopPropagation();
 
-    const win = document.getElementById(id);
-    const startWidth = win.offsetWidth;
-    const startHeight = win.offsetHeight;
-
-    let startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-    let startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
-
-    function onMove(event) {
-        let moveX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
-        let moveY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
-
-        win.style.width = startWidth + moveX - startX + 'px';
-        win.style.height = startHeight + moveY - startY + 'px';
-        if (event.cancelable) event.preventDefault();
-    }
-
-    function onEnd() {
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseup', onEnd);
-        document.removeEventListener('touchmove', onMove);
-        document.removeEventListener('touchend', onEnd);
-    }
-
-    if (e.type.includes('mouse')) {
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', onEnd);
-    } else {
-        document.addEventListener('touchmove', onMove, { passive: false });
-        document.addEventListener('touchend', onEnd);
-    }
-}
-
-function toggleSearch(winId) {
-    const searchBar = document.getElementById(`search-${winId}`);
-    searchBar.classList.toggle('active');
-    if (searchBar.classList.contains('active')) {
-        searchBar.querySelector('input').focus();
-    }
-}
 
 function handleSearchInput(winId, consoleId, query) {
     const consoleEl = document.getElementById(consoleId);
@@ -366,19 +273,19 @@ function clearHighlights(consoleEl) {
     }
 }
 
-// 6. UPLINK SYSTEM
+// 5. UPLINK SYSTEM
 function transmitUplink() {
     const btn = document.querySelector('.btn-activate');
     const form = document.querySelector('.tech-form');
-    const winBody = form.closest('.win-body');
-    const originalContent = winBody.innerHTML;
+    const panelBody = form.closest('.panel-content');
+    const originalContent = panelBody.innerHTML;
 
     btn.innerText = "ENCRYPTING...";
     btn.style.opacity = "0.5";
     btn.disabled = true;
 
     setTimeout(() => {
-        winBody.innerHTML = `
+        panelBody.innerHTML = `
             <div class="uplink-terminal" style="font-size:11px; font-family:var(--font-mono); color:#888;">
                 <p>> INITIATING_SECURE_HANDSHAKE...</p>
                 <p>> ENCRYPTING_PAYLOAD: AES-256...</p>
@@ -391,14 +298,88 @@ function transmitUplink() {
             </div>
         `;
         // Store original content for reset
-        winBody.dataset.original = originalContent;
-        winBody.scrollTop = 0;
+        panelBody.dataset.original = originalContent;
+        panelBody.scrollTop = 0;
     }, 1500);
 }
 
-function resetUplink() {
-    const winBody = document.querySelector('#win-comm .win-body');
-    if (winBody.dataset.original) {
-        winBody.innerHTML = winBody.dataset.original;
+
+// 6. GALLERY LIGHTBOX & MAGNIFIER
+function openLightbox(src) {
+    const modal = document.getElementById('lightbox-modal');
+    const imgInfo = document.getElementById('lightbox-img');
+    const lens = document.getElementById('magnifier-lens');
+
+    if (!modal || !imgInfo) return;
+
+    imgInfo.src = src;
+    modal.classList.add('active'); // Use class for flex display
+
+    // Setup Magnifier
+    imgInfo.onload = () => {
+        lens.style.backgroundImage = `url('${src}')`;
+        // Recalculate size if needed or just use consistent sizing
+    };
+
+    // Add mouse move listener
+    const wrapper = document.querySelector('.lightbox-content-wrapper');
+    wrapper.addEventListener('mousemove', handleMagnifier);
+    wrapper.addEventListener('mouseenter', () => lens.style.display = 'block');
+    wrapper.addEventListener('mouseleave', () => lens.style.display = 'none');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) modal.classList.remove('active');
+}
+
+function handleMagnifier(e) {
+    const lens = document.getElementById('magnifier-lens');
+    const img = document.getElementById('lightbox-img');
+
+    if (!lens || !img) return;
+
+    const bounds = img.getBoundingClientRect();
+
+    // Calculate cursor position relative to the image
+    let x = e.clientX - bounds.left;
+    let y = e.clientY - bounds.top;
+
+    // Prevent lens from going out of bounds (Visual only, logic handles bg pos)
+    // Actually, let's just track the cursor directly but clip calculation?
+    // Better: Check if cursor is strictly within image bounds
+    if (x < 0 || x > bounds.width || y < 0 || y > bounds.height) {
+        lens.style.display = 'none';
+        return;
+    } else {
+        lens.style.display = 'block';
+    }
+
+    // Lens Position (Centered on cursor)
+    lens.style.left = (x - lens.offsetWidth / 2) + 'px';
+    lens.style.top = (y - lens.offsetHeight / 2) + 'px';
+
+    /* ZOOM CALCULATION (3x Magnifiction) */
+    /* 
+       The backgroun-size needs to be (Image Width * Zoom) x (Image Height * Zoom).
+       The background-position needs to shift in opposite direction to show the zoomed area.
+    */
+    const zoomLevel = 2.5;
+
+    lens.style.backgroundSize = (bounds.width * zoomLevel) + "px " + (bounds.height * zoomLevel) + "px";
+
+    // Calculate offset
+    // - (x * zoom) + (lensW / 2)  -- Standard formula adjusted for lens centering
+    const bgX = -(x * zoomLevel) + (lens.offsetWidth / 2);
+    const bgY = -(y * zoomLevel) + (lens.offsetHeight / 2);
+
+    lens.style.backgroundPosition = bgX + "px " + bgY + "px";
+}
+
+// Close on outside click
+window.onclick = function (event) {
+    const modal = document.getElementById('lightbox-modal');
+    if (event.target === modal) {
+        closeLightbox();
     }
 }
